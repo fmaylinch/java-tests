@@ -4,12 +4,15 @@ public class StringUtil {
 
     public static String repeat(int times, String text) {
 
-        String result = "";
+        if (times == 0) return "";
+        if (times == 1) return text;
+
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < times; i++) {
-            result += text;
+            result.append(text);
         }
 
-        return result;
+        return result.toString();
     }
 }
