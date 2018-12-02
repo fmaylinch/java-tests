@@ -34,4 +34,14 @@ public class GamblerTest {
         Gambler gambler = new Gambler(4, dice);
         assertThat(gambler.play(), is(false));
     }
+
+    @Test
+    public void diceIsUsed() {
+
+        Dice dice = mock(Dice.class);
+        when(dice.roll()).thenReturn(5);
+        Gambler gambler = new Gambler(4, dice);
+        gambler.play();
+        verify(dice, times(1)).roll();
+    }
 }
