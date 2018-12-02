@@ -21,4 +21,17 @@ public class StringUtilTest {
     public void repeatZeroTimes() {
         assertThat(StringUtil.repeat(0, "bye"), is(""));
     }
+
+    @Test
+    public void repeatNegativeTimes() {
+        try {
+            StringUtil.repeat(-1, "oops");
+            fail();
+        } catch (Exception expected) { }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void repeatNegativeTimes2() {
+        StringUtil.repeat(-1, "oops");
+    }
 }

@@ -4,6 +4,7 @@ public class StringUtil {
 
     public static String repeat(int times, String text) {
 
+        if (times < 0) throw new IllegalArgumentException("negative times: " + times);
         if (times == 0) return "";
         if (times == 1) return text;
 
