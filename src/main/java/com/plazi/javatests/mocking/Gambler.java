@@ -5,9 +5,9 @@ public class Gambler {
     private final int minNumToWin;
     private final Dice dice;
 
-    public Gambler(int minNumToWin) {
+    public Gambler(int minNumToWin, Dice dice) {
         this.minNumToWin = minNumToWin;
-        this.dice = new Dice(6);
+        this.dice = dice;
     }
 
     public boolean play() {
