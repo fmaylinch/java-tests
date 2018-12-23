@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.*;
 
 public class GamblerShould {
 
@@ -21,29 +21,34 @@ public class GamblerShould {
     @Test
     public void win_when_dice_number_is_greater_than_min_to_win() {
 
-        when(dice.roll()).thenReturn(5);
-        assertThat(gambler.play(), is(true));
+        given(dice.roll()).willReturn(5); // given
+
+        boolean gamblerWins = gambler.play(); // when
+
+        assertThat(gamblerWins, is(true)); // then
     }
 
     @Test
     public void win_when_dice_number_is_equal_to_min_to_win() {
 
-        when(dice.roll()).thenReturn(4);
+        given(dice.roll()).willReturn(4);
         assertThat(gambler.play(), is(true));
     }
 
     @Test
     public void loose_when_dice_number_is_less_than_min_to_win() {
 
-        when(dice.roll()).thenReturn(3);
+        given(dice.roll()).willReturn(3);
         assertThat(gambler.play(), is(false));
     }
 
     @Test
     public void use_the_dice() {
 
-        when(dice.roll()).thenReturn(5);
-        gambler.play();
-        verify(dice, times(1)).roll();
+        given(dice.roll()).willReturn(5); // given
+
+        gambler.play(); // when
+
+        then(dice).should(times(1)).roll(); // then
     }
 }
