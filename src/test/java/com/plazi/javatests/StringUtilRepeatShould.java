@@ -5,25 +5,25 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-public class StringUtilTest {
+public class StringUtilRepeatShould {
 
     @Test
-    public void repeatMultipleTimes() {
+    public void return_text_repeated_several_times() {
         assertThat(StringUtil.repeat(3, "hey"), is("heyheyhey"));
     }
 
     @Test
-    public void repeatOnce() {
+    public void return_same_text_when_repeating_once() {
         assertThat(StringUtil.repeat(1, "hello"), is("hello"));
     }
 
     @Test
-    public void repeatZeroTimes() {
+    public void return_empty_string_when_repeating_zero_times() {
         assertThat(StringUtil.repeat(0, "bye"), is(""));
     }
 
     @Test
-    public void repeatNegativeTimes() {
+    public void throw_exception_when_repeating_negative_times() {
         try {
             StringUtil.repeat(-1, "oops");
             fail();
@@ -31,7 +31,7 @@ public class StringUtilTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void repeatNegativeTimes2() {
+    public void throw_exception_when_repeating_negative_times_2() {
         StringUtil.repeat(-1, "oops");
     }
 }

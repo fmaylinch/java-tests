@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class GamblerTest {
+public class GamblerShould {
 
     private Dice dice;
     private Gambler gambler;
@@ -19,28 +19,28 @@ public class GamblerTest {
     }
 
     @Test
-    public void win() {
+    public void win_when_dice_number_is_greater_than_min_to_win() {
 
         when(dice.roll()).thenReturn(5);
         assertThat(gambler.play(), is(true));
     }
 
     @Test
-    public void winWithMinimum() {
+    public void win_when_dice_number_is_equal_to_min_to_win() {
 
         when(dice.roll()).thenReturn(4);
         assertThat(gambler.play(), is(true));
     }
 
     @Test
-    public void loose() {
+    public void loose_when_dice_number_is_less_than_min_to_win() {
 
         when(dice.roll()).thenReturn(3);
         assertThat(gambler.play(), is(false));
     }
 
     @Test
-    public void diceIsUsed() {
+    public void use_the_dice() {
 
         when(dice.roll()).thenReturn(5);
         gambler.play();
