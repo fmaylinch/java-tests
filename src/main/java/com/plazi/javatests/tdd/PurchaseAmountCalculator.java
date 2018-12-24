@@ -7,6 +7,7 @@ public class PurchaseAmountCalculator {
 
     private List<Double> amounts;
     private double discount;
+    private double minAmountForDiscount;
 
     public PurchaseAmountCalculator() {
         this.amounts = new ArrayList<>();
@@ -14,7 +15,11 @@ public class PurchaseAmountCalculator {
 
     public double getTotal() {
         double totalBeforeDiscount = amounts.stream().reduce(0.0, (a, b) -> a + b);
-        return totalBeforeDiscount * (1 - discount);
+        if (totalBeforeDiscount >= minAmountForDiscount) {
+            return totalBeforeDiscount * (1 - discount);
+        } else {
+            return totalBeforeDiscount;
+        }
     }
 
     public void addAmount(double amount) {
@@ -23,5 +28,9 @@ public class PurchaseAmountCalculator {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public void setMinAmountForDiscount(double minAmountForDiscount) {
+        this.minAmountForDiscount = minAmountForDiscount;
     }
 }

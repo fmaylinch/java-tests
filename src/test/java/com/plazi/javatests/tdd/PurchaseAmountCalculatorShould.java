@@ -36,4 +36,30 @@ public class PurchaseAmountCalculatorShould {
 
         assertEquals(45, calculator.getTotal(), 0);
     }
+
+    @Test
+    public void apply_specified_discount_when_total_is_big() {
+
+        PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
+        calculator.setDiscount(0.10);
+        calculator.setMinAmountForDiscount(100);
+
+        calculator.addAmount(50);
+        calculator.addAmount(50);
+
+        assertEquals(90, calculator.getTotal(), 0);
+    }
+
+    @Test
+    public void not_apply_specified_discount_when_total_is_not_big() {
+
+        PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
+        calculator.setDiscount(0.10);
+        calculator.setMinAmountForDiscount(50);
+
+        calculator.addAmount(25);
+        calculator.addAmount(24);
+
+        assertEquals(49, calculator.getTotal(), 0);
+    }
 }
