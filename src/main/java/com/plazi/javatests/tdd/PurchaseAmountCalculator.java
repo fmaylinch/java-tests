@@ -12,14 +12,7 @@ public class PurchaseAmountCalculator {
     }
 
     public double getTotal() {
-
-        double result = 0;
-
-        for (Double amount : amounts) {
-            result += amount;
-        }
-
-        return result;
+        return amounts.stream().reduce(0.0, (a,b) -> a+b);
     }
 
     public void addAmount(double amount) {
