@@ -26,4 +26,17 @@ public class PurchaseAmountCalculatorShould {
 
         assertEquals(9.95, total, 0);
     }
+
+    @Test
+    public void return_sum_of_amounts() {
+
+        PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
+        calculator.addAmount(10);
+        calculator.addAmount(5);
+        calculator.addAmount(20);
+
+        double total = calculator.getTotal();
+
+        assertEquals(35, total, 0);
+    }
 }

@@ -1,14 +1,28 @@
 package com.plazi.javatests.tdd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PurchaseAmountCalculator {
 
-    private double amount;
+    private List<Double> amounts;
+
+    public PurchaseAmountCalculator() {
+        this.amounts = new ArrayList<>();
+    }
 
     public double getTotal() {
-        return amount;
+
+        double result = 0;
+
+        for (Double amount : amounts) {
+            result += amount;
+        }
+
+        return result;
     }
 
     public void addAmount(double amount) {
-        this.amount = amount;
+        this.amounts.add(amount);
     }
 }
