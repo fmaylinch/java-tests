@@ -15,4 +15,15 @@ public class PurchaseAmountCalculatorShould {
 
         assertEquals(0, total, 0);
     }
+
+    @Test
+    public void return_amount_when_there_is_one_amount() {
+
+        PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
+        calculator.addAmount(9.95);
+
+        double total = calculator.getTotal();
+
+        assertEquals(9.95, total, 0);
+    }
 }
