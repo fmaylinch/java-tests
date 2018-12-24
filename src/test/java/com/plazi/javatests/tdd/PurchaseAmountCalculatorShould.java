@@ -17,26 +17,15 @@ public class PurchaseAmountCalculatorShould {
     }
 
     @Test
-    public void return_amount_when_there_is_one_amount() {
-
-        PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
-        calculator.addAmount(9.95);
-
-        double total = calculator.getTotal();
-
-        assertEquals(9.95, total, 0);
-    }
-
-    @Test
     public void return_sum_of_amounts() {
 
         PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
-        calculator.addAmount(10);
+        calculator.addAmount(10.8);
         calculator.addAmount(5);
-        calculator.addAmount(20);
+        calculator.addAmount(20.7);
 
         double total = calculator.getTotal();
 
-        assertEquals(35, total, 0);
+        assertEquals(36.5, total, 0);
     }
 }
