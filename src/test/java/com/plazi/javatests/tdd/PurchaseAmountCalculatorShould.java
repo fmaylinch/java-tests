@@ -11,9 +11,7 @@ public class PurchaseAmountCalculatorShould {
 
         PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
 
-        double total = calculator.getTotal();
-
-        assertEquals(0, total, 0);
+        assertEquals(0, calculator.getTotal(), 0);
     }
 
     @Test
@@ -24,8 +22,18 @@ public class PurchaseAmountCalculatorShould {
         calculator.addAmount(5);
         calculator.addAmount(20.7);
 
-        double total = calculator.getTotal();
+        assertEquals(36.5, calculator.getTotal(), 0);
+    }
 
-        assertEquals(36.5, total, 0);
+    @Test
+    public void apply_specified_discount() {
+
+        PurchaseAmountCalculator calculator = new PurchaseAmountCalculator();
+        calculator.setDiscount(0.10);
+
+        calculator.addAmount(20);
+        calculator.addAmount(30);
+
+        assertEquals(45, calculator.getTotal(), 0);
     }
 }
