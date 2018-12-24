@@ -1,6 +1,7 @@
 package com.plazi.javatests.tdd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PurchaseAmountCalculator {
@@ -24,6 +25,14 @@ public class PurchaseAmountCalculator {
 
     public void addAmount(double amount) {
         this.amounts.add(amount);
+    }
+
+    public void addAmounts(List<Double> amounts) {
+        this.amounts.addAll(amounts);
+    }
+
+    public void addAmounts(Double... amounts) {
+        this.amounts.addAll(Arrays.asList(amounts));
     }
 
     public void setDiscount(double discount) {

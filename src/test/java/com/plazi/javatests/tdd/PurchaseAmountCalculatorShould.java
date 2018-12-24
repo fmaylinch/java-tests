@@ -3,7 +3,7 @@ package com.plazi.javatests.tdd;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PurchaseAmountCalculatorShould {
 
@@ -23,9 +23,7 @@ public class PurchaseAmountCalculatorShould {
     @Test
     public void return_sum_of_amounts() {
 
-        calculator.addAmount(10.8);
-        calculator.addAmount(5);
-        calculator.addAmount(20.7);
+        calculator.addAmounts(10.8, 5.0, 20.7);
 
         assertEquals(36.5, calculator.getTotal(), 0);
     }
@@ -34,9 +32,7 @@ public class PurchaseAmountCalculatorShould {
     public void apply_specified_discount() {
 
         calculator.setDiscount(0.10);
-
-        calculator.addAmount(20);
-        calculator.addAmount(30);
+        calculator.addAmounts(20.0, 30.0);
 
         assertEquals(45, calculator.getTotal(), 0);
     }
@@ -46,9 +42,7 @@ public class PurchaseAmountCalculatorShould {
 
         calculator.setDiscount(0.10);
         calculator.setMinAmountForDiscount(100);
-
-        calculator.addAmount(50);
-        calculator.addAmount(50);
+        calculator.addAmounts(50.0, 50.0);
 
         assertEquals(90, calculator.getTotal(), 0);
     }
@@ -58,9 +52,7 @@ public class PurchaseAmountCalculatorShould {
 
         calculator.setDiscount(0.10);
         calculator.setMinAmountForDiscount(50);
-
-        calculator.addAmount(25);
-        calculator.addAmount(24);
+        calculator.addAmounts(25.0, 24.0);
 
         assertEquals(49, calculator.getTotal(), 0);
     }
