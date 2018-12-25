@@ -27,6 +27,10 @@ public class Game {
 
     public void placeTile(int x, int y) {
 
+        if (winner != Tile.EMPTY) {
+            throw new IllegalStateException("Game has already a winner: " + winner);
+        }
+
         if (board[x][y] != null) {
             throw new IllegalArgumentException("Position occupied: " + x + ", " + y);
         }

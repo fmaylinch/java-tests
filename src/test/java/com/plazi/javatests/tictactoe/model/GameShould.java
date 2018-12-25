@@ -119,6 +119,19 @@ public class GameShould {
         assertThat(game.getWinner(), is(Tile.X));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void not_allow_placing_tiles_after_game_has_winner() {
+
+        final Game game = new Game();
+        game.placeTile(0, 0);
+        game.placeTile(0, 1);
+        game.placeTile(1, 0);
+        game.placeTile(1, 1);
+        game.placeTile(2, 0); // here X wins
+
+        game.placeTile(2, 2); // illegal
+    }
+
     private String board(Game game) {
 
         final StringBuilder result = new StringBuilder();
