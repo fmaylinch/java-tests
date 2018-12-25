@@ -17,6 +17,11 @@ public class Game {
     }
 
     public void placeTile(int x, int y) {
+
+        if (board[x][y] != null) {
+            throw new IllegalArgumentException("Position occupied: " + x + ", " + y);
+        }
+
         board[x][y] = nextPlayer;
         nextPlayer = Tile.values()[ 1 - nextPlayer.ordinal() ];
     }

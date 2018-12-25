@@ -55,6 +55,14 @@ public class GameShould {
                 "···"));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void not_allow_placing_2_tiles_at_same_position() {
+
+        final Game game = new Game();
+        game.placeTile(1, 1);
+        game.placeTile(1, 1);
+    }
+
     private String board(Game game) {
 
         final StringBuilder result = new StringBuilder();
