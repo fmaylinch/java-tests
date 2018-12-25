@@ -11,4 +11,8 @@ public class Game {
     public Tile getNextPlayer() {
         return nextPlayer;
     }
+
+    public void placeTile(int x, int y) {
+        nextPlayer = Tile.O;
+    }
 }

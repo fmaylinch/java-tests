@@ -13,4 +13,12 @@ public class GameShould {
         final Game game = new Game();
         assertThat(game.getNextPlayer(), is(Tile.X));
     }
+
+    @Test
+    public void switch_to_player_O_after_first_move() {
+
+        final Game game = new Game();
+        game.placeTile(0, 0);
+        assertThat(game.getNextPlayer(), is(Tile.O));
+    }
 }
