@@ -29,4 +29,8 @@ public class Game {
     public Tile tileAt(int x, int y) {
         return board[x][y];
     }
+
+    public Tile getWinner() {
+        return null;
+    }
 }

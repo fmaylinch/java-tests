@@ -63,6 +63,38 @@ public class GameShould {
         game.placeTile(1, 1);
     }
 
+    @Test
+    public void start_with_no_winner() {
+
+        final Game game = new Game();
+        assertThat(game.getWinner(), is(nullValue()));
+    }
+
+    @Test
+    public void have_no_winner_when_there_is_no_line_of_3() {
+
+        final Game game = new Game();
+        game.placeTile(0, 0);
+        game.placeTile(1, 0);
+        assertThat(game.getWinner(), is(nullValue()));
+    }
+
+    @Test
+    public void have_no_winner_when_there_is_no_line_of_3_equal_symbols() {
+
+        final Game game = new Game();
+        game.placeTile(1, 1);
+        game.placeTile(2, 0);
+        game.placeTile(0, 0);
+        game.placeTile(2, 2);
+        game.placeTile(2, 1);
+        game.placeTile(0, 1);
+        game.placeTile(1, 2);
+        game.placeTile(1, 0);
+        game.placeTile(0, 2);
+        assertThat(game.getWinner(), is(nullValue()));
+    }
+
     private String board(Game game) {
 
         final StringBuilder result = new StringBuilder();
