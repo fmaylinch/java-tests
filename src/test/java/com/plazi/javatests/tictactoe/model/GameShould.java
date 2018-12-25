@@ -67,7 +67,7 @@ public class GameShould {
     public void start_with_no_winner() {
 
         final Game game = new Game();
-        assertThat(game.getWinner(), is(nullValue()));
+        assertThat(game.getWinner(), is(Tile.EMPTY));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class GameShould {
         final Game game = new Game();
         game.placeTile(0, 0);
         game.placeTile(1, 0);
-        assertThat(game.getWinner(), is(nullValue()));
+        assertThat(game.getWinner(), is(Tile.EMPTY));
     }
 
     @Test
@@ -92,7 +92,31 @@ public class GameShould {
         game.placeTile(1, 2);
         game.placeTile(1, 0);
         game.placeTile(0, 2);
-        assertThat(game.getWinner(), is(nullValue()));
+
+        assertThat(board(game), is("" +
+                "XOO" +
+                "OXX" +
+                "XXO"));
+
+        assertThat(game.getWinner(), is(Tile.EMPTY));
+    }
+
+    @Test
+    public void have_winner_when_there_is_a_line_of_3_equal_symbols() {
+
+        final Game game = new Game();
+        game.placeTile(0, 0);
+        game.placeTile(0, 1);
+        game.placeTile(1, 0);
+        game.placeTile(1, 1);
+        game.placeTile(2, 0);
+
+        assertThat(board(game), is("" +
+                "XXX" +
+                "OO·" +
+                "···"));
+
+        assertThat(game.getWinner(), is(Tile.X));
     }
 
     private String board(Game game) {
@@ -102,7 +126,7 @@ public class GameShould {
         for (int y = 0; y < Game.BOARD_SIZE; y++) {
             for (int x = 0; x < Game.BOARD_SIZE; x++) {
                 final Tile tile = game.tileAt(x, y);
-                result.append(tile != null ? tile : "·");
+                result.append(tile != Tile.EMPTY ? tile : "·");
             }
         }
 
