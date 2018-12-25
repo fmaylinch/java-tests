@@ -39,4 +39,16 @@ public class GameShould {
         game.placeTile(1, 2);
         assertThat(game.tileAt(1, 2), is(Tile.X));
     }
+
+    @Test
+    public void place_tiles() {
+
+        final Game game = new Game();
+        game.placeTile(1, 1);
+        game.placeTile(0, 0);
+        game.placeTile(0, 1);
+        assertThat(game.tileAt(1, 1), is(Tile.X));
+        assertThat(game.tileAt(0, 0), is(Tile.O));
+        assertThat(game.tileAt(0, 1), is(Tile.X));
+    }
 }
