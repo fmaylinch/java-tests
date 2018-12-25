@@ -15,6 +15,10 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
+    public Collection<Movie> findAll() {
+        return movieRepository.findAll();
+    }
+
     public Collection<Movie> findByGenre(Genre genre) {
         return movieRepository.findAll().stream()
                 .filter(m -> m.getGenre() == genre)
