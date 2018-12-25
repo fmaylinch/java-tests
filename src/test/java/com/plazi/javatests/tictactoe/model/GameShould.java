@@ -31,4 +31,12 @@ public class GameShould {
             }
         }
     }
+
+    @Test
+    public void place_tile() {
+
+        final Game game = new Game();
+        game.placeTile(1, 2);
+        assertThat(game.tileAt(1, 2), is(Tile.X));
+    }
 }
