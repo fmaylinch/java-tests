@@ -13,6 +13,6 @@ public class Game {
     }
 
     public void placeTile(int x, int y) {
-        nextPlayer = Tile.O;
+        nextPlayer = Tile.values()[ 1 - nextPlayer.ordinal() ];
     }
 }
