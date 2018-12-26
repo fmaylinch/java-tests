@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
@@ -58,6 +59,13 @@ public class IntegrationTest {
 
         final Movie movie2 = movieService.findById(expectedId);
         assertThat(movie2, is(movie));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void non_existing_movie() {
+
+        final int nonExistingId = 4;
+        movieService.findById(nonExistingId);
     }
 
     @After

@@ -2,6 +2,8 @@ package com.plazi.javatests.moviesapp.data;
 
 import com.plazi.javatests.moviesapp.model.Genre;
 import com.plazi.javatests.moviesapp.model.Movie;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -24,7 +26,11 @@ public class MovieRepositoryJdbc implements MovieRepository {
     @Override
     public Movie findById(long id) {
         final Object[] args = { id };
-        return jdbcTemplate.queryForObject("select * from movies where id = ?", args, movieRowMapper);
+        try {
+            return jdbcTemplate.queryForObject("select * from movies where id = ?", args, movieRowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            throw new IllegalArgumentException("ID doesn't exist: " + id);
+        }
     }
 
     @Override
