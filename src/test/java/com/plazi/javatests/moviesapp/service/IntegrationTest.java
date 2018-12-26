@@ -37,7 +37,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void retrieve_movies() throws Exception {
+    public void retrieve_movies() {
 
         final Collection<Movie> movies = movieService.findAll();
         assertThat(movies, is(Arrays.asList(
@@ -45,6 +45,19 @@ public class IntegrationTest {
                 new Movie(2, "Memento", 113, Genre.THRILLER),
                 new Movie(3, "Matrix", 136, Genre.ACTION)
         )));
+    }
+
+    @Test
+    public void save_and_load_movies() {
+
+        final int expectedId = 4;
+
+        final Movie movie = new Movie("Super 8", 112, Genre.THRILLER);
+        movieService.saveOrUpdate(movie);
+        assertThat(movie.getId(), is(expectedId));
+
+        final Movie movie2 = movieService.findById(expectedId);
+        assertThat(movie2, is(movie));
     }
 
     @After

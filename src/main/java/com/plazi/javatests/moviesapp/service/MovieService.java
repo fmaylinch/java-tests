@@ -15,8 +15,16 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
+    public void saveOrUpdate(Movie movie) {
+        movieRepository.saveOrUpdate(movie);
+    }
+
     public Collection<Movie> findAll() {
         return movieRepository.findAll();
+    }
+
+    public Movie findById(int id) {
+        return movieRepository.findById(id);
     }
 
     public Collection<Movie> findByGenre(Genre genre) {

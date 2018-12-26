@@ -4,8 +4,13 @@ import com.plazi.javatests.moviesapp.model.Genre;
 import com.plazi.javatests.moviesapp.model.Movie;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class MovieRepositoryJdbc implements MovieRepository {
@@ -31,8 +36,20 @@ public class MovieRepositoryJdbc implements MovieRepository {
     public void saveOrUpdate(Movie movie) {
 
         if (movie.getId() == null) {
-            jdbcTemplate.update("insert into movies (name, minutes, genre) values (?, ?, ?)",
-                    movie.getName(), movie.getMinutes(), movie.getGenre().toString());
+
+            final KeyHolder keyHolder = new GeneratedKeyHolder();
+
+            jdbcTemplate.update(connection -> {
+                final PreparedStatement ps = connection.prepareStatement(
+                        "insert into movies (name, minutes, genre) values (?, ?, ?)", new String[]{"id"});
+                ps.setString(1, movie.getName());
+                ps.setInt(2, movie.getMinutes());
+                ps.setString(3, movie.getGenre().toString());
+                return ps;
+            }, keyHolder);
+
+            movie.setId(keyHolder.getKey().intValue());
+
         } else {
             jdbcTemplate.update("update movies set name = ?, minutes = ?, genre = ? where id = ?",
                     movie.getName(), movie.getMinutes(), movie.getGenre().toString(), movie.getId());
