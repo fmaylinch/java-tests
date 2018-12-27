@@ -1,4 +1,4 @@
-package com.plazi.javatests.tictactoe.model;
+package com.plazi.javatests.tictactoe;
 
 import org.junit.Test;
 

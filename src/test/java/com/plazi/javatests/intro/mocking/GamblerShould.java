@@ -1,4 +1,4 @@
-package com.plazi.javatests.mocking;
+package com.plazi.javatests.intro.mocking;
 
 import org.junit.Before;
 import org.junit.Test;

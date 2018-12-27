@@ -1,4 +1,4 @@
-package com.plazi.javatests.intro.tdd;
+package com.plazi.javatests.tdd;
 
 import java.util.ArrayList;
 import java.util.Arrays;

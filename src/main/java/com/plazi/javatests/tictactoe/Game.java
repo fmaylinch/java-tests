@@ -1,4 +1,4 @@
-package com.plazi.javatests.tictactoe.model;
+package com.plazi.javatests.tictactoe;
 
 import java.util.ArrayList;
 import java.util.List;
