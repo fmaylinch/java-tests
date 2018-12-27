@@ -1,8 +1,8 @@
-package com.plazi.javatests.tdd;
+package com.plazi.javatests.intro.tdd;
 
 import org.junit.Test;
 
-import static com.plazi.javatests.tdd.DateUtil.isLeapYear;
+import static com.plazi.javatests.intro.tdd.DateUtil.isLeapYear;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 

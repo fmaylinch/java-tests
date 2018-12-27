@@ -1,4 +1,4 @@
-package com.plazi.javatests;
+package com.plazi.javatests.intro;
 
 public class StringUtil {
 

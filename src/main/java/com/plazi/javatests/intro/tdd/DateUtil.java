@@ -1,4 +1,4 @@
-package com.plazi.javatests.tdd;
+package com.plazi.javatests.intro.tdd;
 
 public class DateUtil {
 
