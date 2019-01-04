@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,23 @@ public class MovieServiceShould {
     }
 
     @Test
-    public void return_movies_by_max_minutes() {
+    public void return_movies_shorter_or_equal_to_max_minutes() {
 
-        final Collection<Movie> shortMovies = movieService.findByMaxMinutes(120);
-        assertThat(idsOf(shortMovies), is(Arrays.asList(2, 3, 4, 5, 6)));
+        final Collection<Movie> shortMovies = movieService.findByMaxMinutes(112);
+        assertThat(idsOf(shortMovies), is(Arrays.asList(4, 5, 6)));
+    }
+
+    @Test
+    public void return_no_movies_when_max_minutes_is_too_low() {
+
+        final Collection<Movie> shortMovies = movieService.findByMaxMinutes(102);
+        assertThat(idsOf(shortMovies), is(Collections.emptyList()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void fail_when_max_minutes_is_not_positive() {
+
+        movieService.findByMaxMinutes(0);
     }
 
     private List<Integer> idsOf(Collection<Movie> shortMovies) {

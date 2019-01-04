@@ -34,6 +34,11 @@ public class MovieService {
     }
 
     public Collection<Movie> findByMaxMinutes(int maxMinutes) {
+
+        if (maxMinutes <= 0) {
+            throw new IllegalArgumentException("maxMinutes must be positive");
+        }
+
         return movieRepository.findAll().stream()
                 .filter(m -> m.getMinutes() <= maxMinutes)
                 .collect(Collectors.toList());
