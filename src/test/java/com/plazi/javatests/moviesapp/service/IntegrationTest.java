@@ -28,7 +28,7 @@ public class IntegrationTest {
     @Before
     public void setUp() throws Exception {
 
-        dataSource = new DriverManagerDataSource("jdbc:h2:~/test;MODE=MYSQL", "sa", "sa");
+        dataSource = new DriverManagerDataSource("jdbc:h2:~/moviestest;MODE=MYSQL", "sa", "sa");
 
         ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("sql-scripts/init.sql"));
         ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("sql-scripts/test-data.sql"));
