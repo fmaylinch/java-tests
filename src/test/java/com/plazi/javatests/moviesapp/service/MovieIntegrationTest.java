@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
@@ -20,7 +19,7 @@ import java.util.Collection;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-public class IntegrationTest {
+public class MovieIntegrationTest {
 
     private DataSource dataSource;
     private MovieService movieService;
@@ -28,7 +27,7 @@ public class IntegrationTest {
     @Before
     public void setUp() throws Exception {
 
-        dataSource = new DriverManagerDataSource("jdbc:h2:~/moviestest;MODE=MYSQL", "sa", "sa");
+        dataSource = new DriverManagerDataSource("jdbc:h2:mem:test;MODE=MYSQL", "sa", "sa");
 
         ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("sql-scripts/init.sql"));
         ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("sql-scripts/test-data.sql"));
@@ -73,6 +72,6 @@ public class IntegrationTest {
 
         // Remove H2 files -- https://stackoverflow.com/a/51809831/1121497
         final Statement s = dataSource.getConnection().createStatement();
-        s.execute("drop all objects delete files");
+        s.execute("drop all objects delete files"); // "shutdown" is also enough for mem db
     }
 }
