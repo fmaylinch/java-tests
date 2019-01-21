@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(path = "/api")
-public class MovieApi {
+@RequestMapping(path = "/api/movies")
+public class MovieController {
 
     private final MovieService movieService;
 
     @Autowired
-    public MovieApi(MovieService movieService) {
+    public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/movies")
+    @RequestMapping(method = RequestMethod.GET)
     public Collection<Movie> allMovies() {
 
         return movieService.findAll();

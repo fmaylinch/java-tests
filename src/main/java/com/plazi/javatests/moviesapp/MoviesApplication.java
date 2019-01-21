@@ -1,9 +1,5 @@
 package com.plazi.javatests.moviesapp;
 
-import com.plazi.javatests.moviesapp.data.MovieRepository;
-import com.plazi.javatests.moviesapp.model.Genre;
-import com.plazi.javatests.moviesapp.model.Movie;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -32,19 +28,17 @@ public class MoviesApplication {
 		return dataSource;
 	}
 
+	/*
 	@Bean
 	public CommandLineRunner insertSampleData(MovieRepository movieRepository) {
 
 		return args -> {
 
-			if (movieRepository.findAll().isEmpty()) {
-				System.out.println("Inserting sample data");
-				movieRepository.saveOrUpdate(new Movie("Dark Knight", 152, Genre.ACTION));
-				movieRepository.saveOrUpdate(new Movie("Memento", 113, Genre.THRILLER));
-				movieRepository.saveOrUpdate(new Movie("There's Something About Mary", 119, Genre.COMEDY));
-			} else {
-				System.out.println("There are already movies in the database");
-			}
+			System.out.println("Inserting sample data");
+			movieRepository.saveOrUpdate(new Movie("Dark Knight", 152, Genre.ACTION));
+			movieRepository.saveOrUpdate(new Movie("Memento", 113, Genre.THRILLER));
+			movieRepository.saveOrUpdate(new Movie("There's Something About Mary", 119, Genre.COMEDY));
 		};
 	}
+	*/
 }
