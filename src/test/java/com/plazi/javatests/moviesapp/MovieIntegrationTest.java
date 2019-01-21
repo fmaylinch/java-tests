@@ -1,9 +1,10 @@
-package com.plazi.javatests.moviesapp.service;
+package com.plazi.javatests.moviesapp;
 
 import com.plazi.javatests.moviesapp.data.MovieRepository;
 import com.plazi.javatests.moviesapp.data.MovieRepositoryJdbc;
 import com.plazi.javatests.moviesapp.model.Genre;
 import com.plazi.javatests.moviesapp.model.Movie;
+import com.plazi.javatests.moviesapp.service.MovieService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
