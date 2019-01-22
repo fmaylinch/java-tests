@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 public class StringUtilRepeatShould {
 
+    // TODO: what should happen when text is null?
+
     @Test
     public void return_text_repeated_several_times() {
         assertThat(StringUtil.repeat(3, "hey"), is("heyheyhey"));
