@@ -1,5 +1,7 @@
 package com.plazi.javatests.intro.mocking;
 
+import com.plazi.javatests.intro.mocking.gambler.Dice;
+import com.plazi.javatests.intro.mocking.gambler.Gambler;
 import org.junit.Before;
 import org.junit.Test;
 

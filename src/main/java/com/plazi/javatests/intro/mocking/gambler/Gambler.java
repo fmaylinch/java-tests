@@ -1,4 +1,4 @@
-package com.plazi.javatests.intro.mocking;
+package com.plazi.javatests.intro.mocking.gambler;
 
 public class Gambler {
 
