@@ -1,11 +1,7 @@
 package com.plazi.javatests.moviesapp;
 
-import com.plazi.javatests.moviesapp.data.DataSourceUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import javax.sql.DataSource;
 
 @SpringBootApplication
 public class MoviesApplication {
@@ -14,8 +10,13 @@ public class MoviesApplication {
 		SpringApplication.run(MoviesApplication.class, args);
 	}
 
+	/*
+	 * Spring can also configure the DataSource
+	 * from the values in application.properties
+	 *
 	@Bean
 	public DataSource getDataSource() {
 		return DataSourceUtil.getDataSource();
 	}
+	*/
 }

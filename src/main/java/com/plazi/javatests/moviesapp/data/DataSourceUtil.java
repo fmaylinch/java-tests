@@ -13,6 +13,6 @@ public class DataSourceUtil {
 
         return new DriverManagerDataSource(
                 "jdbc:h2:" + dbPath + ";MODE=MYSQL",
-                "sa", "sa");
+                "dbuser", "dbpass");
     }
 }
