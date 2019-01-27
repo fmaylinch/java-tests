@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Dark Knight",
+    "minutes": 152,
+    "genre": "ACTION"
+  },
+  {
+    "id": 2,
+    "name": "Memento",
+    "minutes": 113,
+    "genre": "THRILLER"
+  },
+  {
+    "id": 3,
+    "name": "Matrix",
+    "minutes": 136,
+    "genre": "ACTION"
+  }
+]

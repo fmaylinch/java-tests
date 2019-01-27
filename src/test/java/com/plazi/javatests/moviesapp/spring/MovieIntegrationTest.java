@@ -2,10 +2,12 @@ package com.plazi.javatests.moviesapp.spring;
 
 import com.plazi.javatests.moviesapp.model.Genre;
 import com.plazi.javatests.moviesapp.model.Movie;
+import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -19,12 +21,13 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.nio.charset.StandardCharsets;
 import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -64,6 +67,18 @@ public class MovieIntegrationTest {
                 new Movie(2, "Memento", 113, Genre.THRILLER),
                 new Movie(3, "Matrix", 136, Genre.ACTION)
         )));
+    }
+
+    @Test
+    public void getMovies_json() throws Exception {
+
+        String responseJson = restTemplate.getForObject(
+                "http://localhost:" + port + "/api/movies", String.class);
+
+        final String expectedMoviesJson =
+                IOUtils.resourceToString("/json/expected-movies-int-test.json", StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals(expectedMoviesJson, responseJson, true);
     }
 
 
