@@ -13,10 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.util.FileCopyUtils;
 
-import java.io.FileReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -39,7 +36,7 @@ public class MovieControllerUnitTest {
     private MovieService movieService;
 
     @Test
-    public void getMovies() throws Exception {
+    public void all_movies() throws Exception {
 
         given(movieService.findAll()).willReturn(Arrays.asList(
                 new Movie(1, "Memento", 113, Genre.THRILLER),
@@ -47,8 +44,8 @@ public class MovieControllerUnitTest {
                 new Movie(3, "Matrix", 136, Genre.ACTION)
         ));
 
-        final String expectedJson =
-                IOUtils.resourceToString("/json/expected.json", StandardCharsets.UTF_8);
+        final String expectedMoviesJson =
+                IOUtils.resourceToString("/json/expected-movies.json", StandardCharsets.UTF_8);
 
         mvc.perform(get("/api/movies")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -59,6 +56,41 @@ public class MovieControllerUnitTest {
                 .andExpect(jsonPath("$[0].name", is("Memento")))
                 .andExpect(jsonPath("$..name", is(Arrays.asList("Memento", "Super 8", "Matrix"))))
 
-                .andExpect(content().json(expectedJson));
+                .andExpect(content().json(expectedMoviesJson));
+    }
+
+    @Test
+    public void movies_by_genre() throws Exception {
+
+        given(movieService.findByGenre(Genre.THRILLER)).willReturn(Arrays.asList(
+                new Movie(1, "Memento", 113, Genre.THRILLER),
+                new Movie(2, "Super 8", 112, Genre.THRILLER)
+        ));
+
+        final String expectedMoviesJson =
+                IOUtils.resourceToString("/json/expected-movies-by-genre.json", StandardCharsets.UTF_8);
+
+        mvc.perform(get("/api/movies?genre=THRILLER")
+                .contentType(MediaType.APPLICATION_JSON))
+
+                .andExpect(status().isOk())
+
+                .andExpect(content().json(expectedMoviesJson));
+    }
+
+    @Test
+    public void movie_by_id() throws Exception {
+
+        given(movieService.findById(2)).willReturn(
+                new Movie(2, "Super 8", 112, Genre.THRILLER)
+        );
+
+        final String expectedMovieJson =
+                IOUtils.resourceToString("/json/expected-movie.json", StandardCharsets.UTF_8);
+
+        mvc.perform(get("/api/movies/2")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedMovieJson));
     }
 }
