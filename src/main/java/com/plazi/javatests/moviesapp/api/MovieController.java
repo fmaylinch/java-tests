@@ -1,11 +1,10 @@
 package com.plazi.javatests.moviesapp.api;
 
+import com.plazi.javatests.moviesapp.model.Genre;
 import com.plazi.javatests.moviesapp.model.Movie;
 import com.plazi.javatests.moviesapp.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -21,8 +20,18 @@ public class MovieController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<Movie> allMovies() {
+    public Collection<Movie> findMovies(@RequestParam(required = false) Genre genre) {
 
-        return movieService.findAll();
+        if (genre == null) {
+            return movieService.findAll();
+        } else {
+            return movieService.findByGenre(genre);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public Movie movieById(@PathVariable int id) {
+
+        return movieService.findById(id);
     }
 }
