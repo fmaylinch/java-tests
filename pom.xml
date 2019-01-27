@@ -49,6 +49,10 @@
 
     <build>
         <plugins>
+            <!--
+                This plugin configuration is necessary when running tests from mvn.
+                You don't need this if you run tests from IntelliJ (right-click on src/test/java).
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

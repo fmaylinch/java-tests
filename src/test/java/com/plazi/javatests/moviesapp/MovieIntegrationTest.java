@@ -28,7 +28,7 @@ public class MovieIntegrationTest {
     @Before
     public void setUp() throws Exception {
 
-        dataSource = new DriverManagerDataSource("jdbc:h2:mem:test;MODE=MYSQL", "sa", "sa");
+        dataSource = new DriverManagerDataSource("jdbc:h2:mem:test;MODE=MYSQL", "dbuser", "dbpass");
 
         ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("sql-scripts/init.sql"));
         ScriptUtils.executeSqlScript(dataSource.getConnection(), new ClassPathResource("sql-scripts/test-data.sql"));
