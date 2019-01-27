@@ -24,7 +24,7 @@ import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MovieService.class) // <-- We can reduce the number of objects created
-public class MoveServiceUnitTest {
+public class MovieServiceUnitTest {
 
     @Autowired
     MovieService movieService; // <-- the real service will be injected
